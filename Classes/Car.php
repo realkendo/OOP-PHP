@@ -1,2 +1,5 @@
 <?php
-ghjk 
+
+Class Car {
+    
+}

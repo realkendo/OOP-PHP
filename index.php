@@ -16,6 +16,20 @@
   </style>
 </head>
 <body>
-    <h1>Welcome to Object Orientation with PHP</h1>
+  <h1>Welcome to Object Orientation with PHP</h1>
+
+  <?php
+
+   $brand = "Volvo"; 
+   $color = "Green";
+   
+   function getCarInfo($brand, $color){
+    return "Brand: " . $brand . " Color: " . $color;
+   }
+
+   echo getCarInfo($brand,$color);
+
+  ?>
+
 </body>
 </html>
