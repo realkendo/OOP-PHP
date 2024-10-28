@@ -22,6 +22,7 @@
 
    $brand = "Volvo"; 
    $color = "Green";
+
    
    function getCarInfo($brand, $color){
     return "Brand: " . $brand . " Color: " . $color;
