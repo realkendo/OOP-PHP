@@ -90,6 +90,77 @@
     ?>
 
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+    const itemForm = document.getElementById("itemForm");
+    const itemsList = document.getElementById("itemsList");
+
+    // Load items on page load
+    fetchItems();
+
+    // Handle form submission
+    itemForm.onsubmit = function (event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const description = document.getElementById("description").value;
+
+        fetch("crud.php?action=create", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `name=${name}&description=${description}`
+        }).then(response => response.json()).then(data => {
+            alert(data.message);
+            itemForm.reset();
+            fetchItems();
+        });
+    };
+
+    // Fetch and display items
+    function fetchItems() {
+        fetch("crud.php?action=read")
+            .then(response => response.json())
+            .then(items => {
+                itemsList.innerHTML = "";
+                items.forEach(item => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `${item.name}: ${item.description} 
+                    <button onclick="editItem(${item.id}, '${item.name}', '${item.description}')">Edit</button> 
+                    <button onclick="deleteItem(${item.id})">Delete</button>`;
+                    itemsList.appendChild(li);
+                });
+            });
+    }
+
+    // Edit an item
+    window.editItem = function (id, name, description) {
+        const newName = prompt("Enter new name:", name);
+        const newDescription = prompt("Enter new description:", description);
+
+        if (newName && newDescription) {
+            fetch("crud.php?action=update", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `id=${id}&name=${newName}&description=${newDescription}`
+            }).then(response => response.json()).then(data => {
+                alert(data.message);
+                fetchItems();
+            });
+        }
+    };
+
+    // Delete an item
+    window.deleteItem = function (id) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            fetch("crud.php?action=delete", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `id=${id}`
+            }).then(response => response.json()).then(data => {
+                alert(data.message);
+                fetchItems();
+            });
+        }
+    };
+});
 
     </script>
 </body>
