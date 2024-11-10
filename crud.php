@@ -15,27 +15,27 @@
       // determine the action
       $action = $_GET['action'] ?? '';
 
-      // create functionality
-      if($action == 'create'){
+switch ($action) {
+    case 'create':
         $name = $_POST['name'];
         $description = $_POST['description'];
 
         $stmt = $conn->prepare("INSERT INTO items (name, description) VALUES (?, ?)");
         $stmt->bind_param("ss", $name, $description);
         $stmt->execute();
-        echo json_encode(["message" => "Item created succesfully"]);
+        echo json_encode(["message" => "Item created successfully"]);
+        break;
 
-        // read functionality
-      }elseif($action == 'read'){
+    case 'read':
         $result = $conn->query("SELECT * FROM items");
         $items = [];
-        while($row = $result->fetch_assoc()){
-          $items[] = $row;
+        while ($row = $result->fetch_assoc()) {
+            $items[] = $row;
         }
         echo json_encode($items);
+        break;
 
-        // update functionality
-      }elseif($action == 'update'){
+    case 'update':
         $id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -44,14 +44,22 @@
         $stmt->bind_param("ssi", $name, $description, $id);
         $stmt->execute();
         echo json_encode(["message" => "Item updated successfully"]);
-      }elseif($action == "delete"){
+        break;
+
+    case 'delete':
         $id = $_POST["id"];
 
-        $stmt = $conn->prepare("DELETE FROME items WHERE id =?");
+        $stmt = $conn->prepare("DELETE FROM items WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        echo json_encode(["message" => "item deleted successfully"]);
-      }
+        echo json_encode(["message" => "Item deleted successfully"]);
+        break;
+
+    default:
+        echo json_encode(["error" => "Invalid action"]);
+        break;
+}
+
 
       $conn->close();
     ?>
