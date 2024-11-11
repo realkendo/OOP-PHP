@@ -60,7 +60,6 @@ switch ($action) {
         break;
 }
 
-
       $conn->close();
     ?>
   
