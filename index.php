@@ -4,7 +4,7 @@ include('./includes/class-autoload.inc.php');
 require_once('./templates/header.php');
 
 $posts = new Posts();
-print_r($posts);
+$posts->getPost();
 
 ?>
 
