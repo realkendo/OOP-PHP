@@ -1,5 +1,11 @@
 <?php
+
+include('./includes/class-autoload.inc.php');
 require_once('./templates/header.php');
+
+$host = new Dbh();
+echo $host->connect();
+
 ?>
 
 <div class="text-center">
@@ -8,6 +14,7 @@ require_once('./templates/header.php');
     <i class="bi bi-pencil mx-1"></i>Create Post
   </button>
 </div>
+
 
 <!-- post heading -->
 <div class="text-center">
