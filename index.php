@@ -3,9 +3,6 @@
 include('./includes/class-autoload.inc.php');
 require_once('./templates/header.php');
 
-$posts = new Posts();
-$posts->getPost();
-
 ?>
 
 <div class="text-center">
@@ -64,39 +61,29 @@ $posts->getPost();
 </div>
 
 
-<!-- posts -->
+<!-- dynamically displaying posts -->
 <div class="row">
-  <!-- post one -->
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">POST ONE</h5>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta excepturi, aliquid non explicabo ratione hic
-          unde! Velit quisquam totam qui ad quaerat deleniti delectus! Optio molestias ipsam temporibus sed quis.
-        </p>
-        <h6 class="card-subtitle text-muted text-right my-2">Author: Kendo Matic</h6>
-        <button class="btn btn-warning">Edit</button>
-        <buttton class="btn btn-danger">Delete</buttton>
+  <?php $posts = new Posts(); ?>
+  <?php if ($posts->getPost()): ?>
+    <?php foreach ($posts->getPost() as $post): ?>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> <?= $post['title']; ?> </h5>
+            <p class="card-text">
+              <?= $post['body']; ?>
+            </p>
+            <h6 class="card-subtitle text-muted text-right my-2">Author: <?= $post['author']; ?></h6>
+            <button class="btn btn-warning">Edit</button>
+            <buttton class="btn btn-danger">Delete</buttton>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    <?php endforeach; ?>
+  <?php else: ?>
+    <h1>No data</h1>
+  <?php endif; ?>
 
-  <!-- post one -->
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">POST Two</h5>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta excepturi, aliquid non explicabo ratione hic
-          unde! Velit quisquam totam qui ad quaerat deleniti delectus! Optio molestias ipsam temporibus sed quis.
-        </p>
-        <h6 class="card-subtitle text-muted text-right my-2">Author: Jessi Kant</h6>
-        <button class="btn btn-warning">Edit</button>
-        <buttton class="btn btn-danger">Delete</buttton>
-      </div>
-    </div>
-  </div>
 </div>
 
 <?php
