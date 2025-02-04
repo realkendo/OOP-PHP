@@ -8,5 +8,5 @@ if (isset($_POST['submit'])) {
     $body = $_POST['post-content'];
     $author = $_POST['post-author'];
 
-    $posts->addPost();
+    $posts->addPost($title, $body, $author);
 }
