@@ -12,4 +12,11 @@ class Posts extends Dbh
       return $result;
     }
   }
+
+  public function addPost($title, $body, $author)
+  {
+    $sql = "INSERT INTO posts(title, body, author) VALUES (?, ?, ?)";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$title, $body, $author]);
+  }
 }

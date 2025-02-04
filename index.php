@@ -1,12 +1,11 @@
 <?php
 
-include('./includes/class-autoload.inc.php');
-require_once('./templates/header.php');
+include './includes/class-autoload.inc.php';
+require_once './templates/header.php';
 
 ?>
-
+<!-- modal button -->
 <div class="text-center">
-  <!-- Button trigger modal -->
   <button type="button" class="my-5 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
     <i class="bi bi-pencil mx-1"></i>Create Post
   </button>
@@ -29,7 +28,7 @@ require_once('./templates/header.php');
       </div>
       <div class="modal-body">
         <!-- form input -->
-        <form action="#">
+        <form action="post.process.php" method="POST">
           <!-- title -->
           <div class="form-group">
             <label for="">Title: </label>
@@ -44,14 +43,14 @@ require_once('./templates/header.php');
           <!-- author -->
           <div class="form-group">
             <label for="">Author: </label>
-            <input class="form-control" name="post-title" type="text" placeholder="Name of Author" required>
+            <input class="form-control" name="post-author" type="text" placeholder="Name of Author" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
               <i class="bi bi-x-circle mx-1"></i>Close
             </button>
-            <button type="button" class="btn btn-primary">
-              <i class="bi bi-save mx-1"></i>Save
+            <button type="submit" name="submit" class="btn btn-primary">
+              <i class="bi bi-plus-circle mx-1"></i>Add Post
             </button>
           </div>
         </form>
@@ -74,8 +73,8 @@ require_once('./templates/header.php');
               <?= $post['body']; ?>
             </p>
             <h6 class="card-subtitle text-muted text-right my-2">Author: <?= $post['author']; ?></h6>
-            <button class="btn btn-warning">Edit</button>
-            <buttton class="btn btn-danger">Delete</buttton>
+            <button class="btn btn-warning"><i class="bi bi-pencil-square mx-1"></i>Edit</button>
+            <buttton class="btn btn-danger"><i class="bi bi-trash mx-1"></i>Delete</buttton>
           </div>
         </div>
       </div>
@@ -87,5 +86,5 @@ require_once('./templates/header.php');
 </div>
 
 <?php
-require_once('./templates/footer.php');
+require_once './templates/footer.php';
 ?>
