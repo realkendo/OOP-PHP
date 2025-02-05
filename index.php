@@ -76,7 +76,7 @@ require_once './templates/header.php';
             <a href="editForm.php?id=<?= $post['id']; ?>" class="btn btn-warning">
               <i class="bi bi-pencil-square mx-1">Edit</i>
             </a>
-            <a href="post.process.php?id=<?= $post['id']; ?>" class="btn btn-danger">
+            <a href="post.process.php?id=<?= $post['id'] ?>&send=del" class="btn btn-danger">
               <i class="bi bi-trash mx-1">Delete</i>
             </a>
           </div>

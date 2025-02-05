@@ -23,4 +23,6 @@ if (isset($_POST['submit'])) {
   $posts->updatePost($title, $body, $author, $id);
 
   header("location: {$_SERVER['HTTP_ORIGIN']}/phpFiles/oophp");
+} else if ($_GET['send'] === 'del') {
+  echo "post has been deleted";
 }
