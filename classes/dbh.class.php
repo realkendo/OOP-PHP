@@ -17,7 +17,7 @@ class Dbh
 
   public function deletePost($id)
   {
-    $sql = "DELET FROM posts WHERE id=?";
+    $sql = "DELETE FROM posts WHERE id=?";
     $stmt = $this->connect()->prepare($sql);
     $stmt->execute([$id]);
   }
