@@ -14,4 +14,11 @@ class Dbh
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
   }
+
+  public function deletePost($id)
+  {
+    $sql = "DELET FROM posts WHERE id=?";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$id]);
+  }
 }

@@ -24,5 +24,9 @@ if (isset($_POST['submit'])) {
 
   header("location: {$_SERVER['HTTP_ORIGIN']}/phpFiles/oophp");
 } else if ($_GET['send'] === 'del') {
-  echo "post has been deleted";
+  $id =  $_GET['id'];
+
+  $posts->deletePost($id);
+
+  header("location: {$_SERVER['HTTP_ORIGIN']}/phpFiles/oophp");
 }
