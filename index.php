@@ -68,13 +68,17 @@ require_once './templates/header.php';
       <div class="col-md-6">
         <div class="card my-3 mx-2">
           <div class="card-body">
-            <h5 class="card-title"> <?= $post['title']; ?> </h5>
+            <h4 class="card-title text-center text-decoration-underline"> <?= $post['title']; ?> </h4>
             <p class="card-text">
               <?= $post['body']; ?>
             </p>
-            <h6 class="card-subtitle text-muted text-right my-2">Author: <?= $post['author']; ?></h6>
-            <button class="btn btn-warning"><i class="bi bi-pencil-square mx-1"></i>Edit</button>
-            <buttton class="btn btn-danger"><i class="bi bi-trash mx-1"></i>Delete</buttton>
+            <h6 class="card-subtitle text-muted text-end my-2">Author: <?= $post['author']; ?></h6>
+            <a href="editForm.php?id=<?= $post['id']; ?>" class="btn btn-warning">
+              <i class="bi bi-pencil-square mx-1">Edit</i>
+            </a>
+            <a href="post.process.php?id=<?= $post['id']; ?>" class="btn btn-danger">
+              <i class="bi bi-trash mx-1">Delete</i>
+            </a>
           </div>
         </div>
       </div>

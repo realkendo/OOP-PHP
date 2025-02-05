@@ -21,4 +21,14 @@ class Posts extends Dbh
 
     header("location: {$_SERVER['HTTP_REFERER']}");
   }
+
+  public function editPost($id)
+  {
+    $sql = "SELECT * FROM posts WHERE id=?";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$id]);
+    $result = $stmt->fetch();
+
+    return $result;
+  }
 }
